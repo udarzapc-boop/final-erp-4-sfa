@@ -364,9 +364,7 @@
         <button class="tab-btn" data-perm="ADMIN" onclick="switchTab('admin', this)">🛡️ Administration & Rep Control</button>
       </div>
 
-      <!-- =========================================================
-           TAB 1: DASHBOARD (KPIs + BAR & PIE CHARTS + LIVE TABLES)
-           ========================================================= -->
+      <!-- TAB 1: DASHBOARD -->
       <div id="panel-dashboard" class="panel active">
         <div class="kpi-grid">
           <div class="kpi-card">
@@ -387,7 +385,6 @@
           </div>
         </div>
 
-        <!-- NEW: INTERACTIVE BAR CHART & PIE CHART -->
         <div class="charts-grid">
           <div class="card">
             <div class="card-header">
@@ -443,9 +440,7 @@
         </div>
       </div>
 
-      <!-- =========================================================
-           TAB 2: ITEMS & PRICING
-           ========================================================= -->
+      <!-- TAB 2: ITEMS & PRICING -->
       <div id="panel-items" class="panel">
         <div class="grid-2">
           <div class="card">
@@ -490,9 +485,7 @@
         </div>
       </div>
 
-      <!-- =========================================================
-           TAB 3: STOCK IN (GRN) - EXPANDED LARGER SCREEN LAYOUT
-           ========================================================= -->
+      <!-- TAB 3: STOCK IN (GRN) -->
       <div id="panel-grn" class="panel">
         <div class="ops-grid">
           <div class="card ops-card">
@@ -527,9 +520,7 @@
         </div>
       </div>
 
-      <!-- =========================================================
-           TAB 4: VEHICLE LOADING - EXPANDED LARGER SCREEN LAYOUT
-           ========================================================= -->
+      <!-- TAB 4: VEHICLE LOADING -->
       <div id="panel-loading" class="panel">
         <div class="ops-grid">
           <div class="card ops-card">
@@ -541,7 +532,9 @@
               </div>
               <div class="form-group">
                 <label>Sales Rep Username *</label>
-                <select id="loadRepSelect"></select>
+                <select id="loadRepSelect">
+                  <option value="">-- Select Sales Rep --</option>
+                </select>
               </div>
             </div>
             <div class="form-group">
@@ -574,9 +567,7 @@
         </div>
       </div>
 
-      <!-- =========================================================
-           TAB 5: UNLOADING & RETURNS - EXPANDED LARGER SCREEN LAYOUT
-           ========================================================= -->
+      <!-- TAB 5: UNLOADING & RETURNS -->
       <div id="panel-unloading" class="panel">
         <div class="ops-grid">
           <div class="card ops-card">
@@ -627,9 +618,7 @@
         </div>
       </div>
 
-      <!-- =========================================================
-           TAB 6: WAREHOUSE & PROFIT REPORTS
-           ========================================================= -->
+      <!-- TAB 6: WAREHOUSE & PROFIT REPORTS -->
       <div id="panel-reports" class="panel">
         <div class="card">
           <div class="card-header">
@@ -678,48 +667,32 @@
         </div>
       </div>
 
-      <!-- =========================================================
-           TAB 7: ADMINISTRATION, FLEET & REP REPORTS
-           ========================================================= -->
+      <!-- TAB 7: ADMINISTRATION, FLEET & REP REPORTS -->
       <div id="panel-admin" class="panel">
         <div class="sub-tabs">
           <button class="sub-tab-btn active" onclick="switchAdminSubTab('repsales', this)">🚐 Live Rep Sales, Duty & Reports</button>
-          <button class="sub-tab-btn" onclick="switchAdminSubTab('routes', this)">🛣️ Routes & Customer Shops</button>
-          <button class="sub-tab-btn" onclick="switchAdminSubTab('receipt', this)">🖨️ Receipt & Printer Editor</button>
+          <button class="sub-tab-btn" onclick="switchAdminSubTab('routes', this)">🗺️ Routes & Customer Shops</button>
           <button class="sub-tab-btn" onclick="switchAdminSubTab('users', this)">👥 Users & Permissions</button>
+          <button class="sub-tab-btn" onclick="switchAdminSubTab('receipt', this)">🖨️ POS Thermal Receipt Format</button>
         </div>
 
-        <!-- SUB-PANEL 7A: LIVE REP SALES, DUTY ATTENDANCE & REP REPORTS -->
+        <!-- SUB-TAB 1: LIVE REP SALES, DUTY & REPORTS -->
         <div id="adm-panel-repsales" class="adm-subpanel active">
           <div class="kpi-grid">
-            <div class="kpi-card">
-              <div class="kpi-label">Today Field Sales (All Reps)</div>
-              <div class="kpi-val" style="color:var(--primary);" id="admRepTotalSales">Rs. 0.00</div>
-            </div>
-            <div class="kpi-card green">
-              <div class="kpi-label">Total Cash Collected Today</div>
-              <div class="kpi-val" style="color:var(--green);" id="admRepTotalCash">Rs. 0.00</div>
-            </div>
-            <div class="kpi-card red">
-              <div class="kpi-label">New Credit Issued Today</div>
-              <div class="kpi-val" style="color:var(--red);" id="admRepTotalCredit">Rs. 0.00</div>
-            </div>
-            <div class="kpi-card amber">
-              <div class="kpi-label">Total Market Credit Due</div>
-              <div class="kpi-val" style="color:var(--amber);" id="admMarketTotalDue">Rs. 0.00</div>
-            </div>
+            <div class="kpi-card"><div class="kpi-label">Today Field Sales (All Reps)</div><div class="kpi-val" id="admRepTotalSales">Rs. 0.00</div></div>
+            <div class="kpi-card green"><div class="kpi-label">Today Cash Collected</div><div class="kpi-val" style="color:var(--green);" id="admRepTotalCash">Rs. 0.00</div></div>
+            <div class="kpi-card red"><div class="kpi-label">Today Credit Issued</div><div class="kpi-val" style="color:var(--red);" id="admRepTotalCredit">Rs. 0.00</div></div>
+            <div class="kpi-card amber"><div class="kpi-label">Total Market Credit Due</div><div class="kpi-val" style="color:var(--amber);" id="admMarketTotalDue">Rs. 0.00</div></div>
           </div>
 
           <div class="card">
             <div class="card-header">
-              <h3>⏱️ Today's Rep Duty Attendance (ON / OFF Log)</h3>
-              <button class="btn-outline btn-sm" onclick="loadFleetControlData()">↻ Refresh Live Duty</button>
+              <h3>🟢 Today's Sales Rep Duty & Attendance Log</h3>
+              <button class="btn-outline btn-sm" onclick="loadFleetControlData()">↻ Refresh Duty Log</button>
             </div>
             <div class="table-wrap">
               <table>
-                <thead>
-                  <tr><th>Sales Rep</th><th>Vehicle No</th><th>Duty ON Time</th><th>Duty OFF Time</th><th>Active Duration</th><th>Live Status</th></tr>
-                </thead>
+                <thead><tr><th>Sales Rep</th><th>Vehicle No</th><th>Duty ON Time</th><th>Duty OFF Time</th><th>Total Duration</th><th>Status</th></tr></thead>
                 <tbody id="adminAttendanceBody"></tbody>
               </table>
             </div>
@@ -727,22 +700,12 @@
 
           <div class="card">
             <div class="card-header">
-              <h3>📊 Rep-wise Field Sales & Cash Collection Report (Today)</h3>
-              <button class="btn-primary btn-sm" onclick="exportRepPerformanceCsv()">⬇ Download Rep Report (CSV)</button>
+              <h3>📊 Rep-wise Daily Performance & Cash Settlement</h3>
+              <button class="btn-outline btn-sm" onclick="exportRepPerformanceCsv()">⬇ Export Rep Summary CSV</button>
             </div>
             <div class="table-wrap">
               <table>
-                <thead>
-                  <tr>
-                    <th>Sales Rep</th>
-                    <th>Bills Count</th>
-                    <th>Gross Sales (Rs.)</th>
-                    <th>Cash Sales (Rs.)</th>
-                    <th>Credit Issued (Rs.)</th>
-                    <th>Old Credit Collected (Rs.)</th>
-                    <th>Total Cash in Hand (Rs.)</th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Sales Rep</th><th>Bills</th><th>Gross Sales</th><th>Cash Sales</th><th>Credit Issued</th><th>Credit Collected</th><th>Total Cash in Hand</th></tr></thead>
                 <tbody id="repPerformanceReportBody"></tbody>
               </table>
             </div>
@@ -750,211 +713,98 @@
 
           <div class="card">
             <div class="card-header">
-              <h3>🧾 Live Field Invoices & Credit Settlements</h3>
-              <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
-                <select id="filterInvoicesByRep" style="width:auto; padding:7px 11px;" onchange="renderAdminInvoicesTable()">
-                  <option value="ALL">All Sales Reps</option>
-                </select>
-                <button class="btn-outline btn-sm" onclick="exportInvoicesCsv()">⬇ Export Invoices (CSV)</button>
-              </div>
+              <h3>🧾 Today's Field Invoices & Credit Collections</h3>
+              <select id="filterInvoicesByRep" style="width:auto;" onchange="renderAdminInvoicesTable()">
+                <option value="ALL">All Sales Reps</option>
+              </select>
             </div>
-            <div class="table-wrap" style="max-height:420px;">
+            <div class="table-wrap" style="max-height:360px;">
               <table>
-                <thead>
-                  <tr><th>Invoice / Ref</th><th>Time</th><th>Rep</th><th>Vehicle</th><th>Shop Name</th><th>Mode</th><th>Total (Rs.)</th><th>Cash Paid</th><th>Credit Bal.</th></tr>
-                </thead>
-                <tbody id="adminLiveInvoicesBody"></tbody>
-              </table>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <h3>💳 Customer Shop Outstanding Credit Balances Report</h3>
-              <button class="btn-amber btn-sm" onclick="exportShopCreditCsv()">⬇ Export Credit Report (CSV)</button>
-            </div>
-            <div class="table-wrap" style="max-height:380px;">
-              <table>
-                <thead>
-                  <tr><th>Shop ID</th><th>Shop Name</th><th>Route</th><th>Phone</th><th>Credit Limit</th><th>Current Credit Due</th><th>Utilization</th></tr>
-                </thead>
-                <tbody id="shopCreditReportBody"></tbody>
+                <thead><tr><th>Invoice ID</th><th>Time</th><th>Rep</th><th>Vehicle</th><th>Shop</th><th>Type</th><th>Total</th><th>Cash</th><th>Credit</th></tr></thead>
+                <tbody id="adminInvoicesBody"></tbody>
               </table>
             </div>
           </div>
         </div>
 
-        <!-- SUB-PANEL 7B: ROUTES & CUSTOMER SHOPS -->
+        <!-- SUB-TAB 2: ROUTES & SHOPS -->
         <div id="adm-panel-routes" class="adm-subpanel">
           <div class="grid-2">
             <div class="card">
-              <div class="card-header"><h3>🛣️ Create & Assign Sales Route</h3></div>
-              <form id="saveRouteForm">
-                <input type="hidden" id="editRouteId" />
-                <div class="form-group">
-                  <label>Route Name *</label>
-                  <input type="text" id="rtName" placeholder="e.g. Balawinna - Haputale Main Road" required />
+              <div class="card-header"><h3>🗺️ Sales Routes</h3></div>
+              <form id="routeForm" style="margin-bottom:14px;">
+                <div class="grid-2" style="gap:10px;">
+                  <input type="text" id="rtName" placeholder="Route Name (e.g. Haputale Town)" required />
+                  <select id="rtAssignedRep"></select>
                 </div>
-                <div class="form-group">
-                  <label>Assign to Sales Rep *</label>
-                  <select id="rtAssignedRep" required></select>
-                </div>
-                <div style="display:flex; gap:8px;">
-                  <button type="submit" class="btn-primary btn-block">✔ Save Route</button>
-                  <button type="button" class="btn-outline" onclick="resetRouteForm()">Reset</button>
-                </div>
+                <button type="submit" class="btn-primary btn-block" style="margin-top:10px;">+ Save Route</button>
               </form>
-
-              <div class="table-wrap" style="margin-top:16px;">
+              <div class="table-wrap">
                 <table>
-                  <thead><tr><th>Route ID</th><th>Route Name</th><th>Assigned Rep</th><th>Actions</th></tr></thead>
+                  <thead><tr><th>ID</th><th>Route Name</th><th>Assigned Rep</th><th>Action</th></tr></thead>
                   <tbody id="adminRoutesBody"></tbody>
                 </table>
               </div>
             </div>
 
             <div class="card">
-              <div class="card-header"><h3>🏪 Register / Edit Customer Shop</h3></div>
-              <form id="saveShopForm">
-                <input type="hidden" id="editShopId" />
+              <div class="card-header"><h3>🏪 Customer Shops & Credit Limits</h3></div>
+              <form id="shopForm" style="margin-bottom:14px;">
                 <div class="grid-2" style="gap:10px;">
-                  <div class="form-group">
-                    <label>Shop Name *</label>
-                    <input type="text" id="shpName" placeholder="e.g. Perera Super" required />
-                  </div>
-                  <div class="form-group">
-                    <label>Route *</label>
-                    <select id="shpRouteId" required></select>
-                  </div>
+                  <select id="shpRouteId" required></select>
+                  <input type="text" id="shpName" placeholder="Shop Name *" required />
+                  <input type="text" id="shpOwner" placeholder="Owner Name" />
+                  <input type="text" id="shpPhone" placeholder="Phone Number" />
+                  <input type="text" id="shpAddress" placeholder="Address" />
+                  <input type="number" id="shpLimit" placeholder="Credit Limit (Rs.)" value="10000" />
                 </div>
-                <div class="grid-2" style="gap:10px;">
-                  <div class="form-group">
-                    <label>Owner Name</label>
-                    <input type="text" id="shpOwner" placeholder="e.g. Mr. Perera" />
-                  </div>
-                  <div class="form-group">
-                    <label>Phone Number *</label>
-                    <input type="text" id="shpPhone" placeholder="e.g. 0771234567" required />
-                  </div>
-                </div>
-                <div class="grid-2" style="gap:10px;">
-                  <div class="form-group">
-                    <label>Town / Address *</label>
-                    <input type="text" id="shpAddress" placeholder="e.g. Haputale Town" required />
-                  </div>
-                  <div class="form-group">
-                    <label>Max Credit Limit (Rs.)</label>
-                    <input type="number" id="shpLimit" value="10000" min="0" />
-                  </div>
-                </div>
-                <div style="display:flex; gap:8px;">
-                  <button type="submit" class="btn-green btn-block">✔ Save Customer Shop</button>
-                  <button type="button" class="btn-outline" onclick="resetShopForm()">Reset</button>
-                </div>
+                <button type="submit" class="btn-green btn-block" style="margin-top:10px;">+ Register Shop</button>
               </form>
+              <div class="table-wrap" style="max-height:320px;">
+                <table>
+                  <thead><tr><th>Shop</th><th>Route</th><th>Credit Due</th><th>Limit</th><th>Action</th></tr></thead>
+                  <tbody id="adminShopsBody"></tbody>
+                </table>
+              </div>
             </div>
           </div>
 
           <div class="card">
-            <div class="card-header">
-              <h3>📋 All Registered Shops Directory</h3>
-              <input type="text" id="admShopSearch" placeholder="🔍 Search shops..." style="max-width:220px; padding:7px 11px;" onkeyup="renderAdminShopsTable()" />
-            </div>
+            <div class="card-header"><h3>💳 Outstanding Market Credit Report</h3></div>
             <div class="table-wrap">
               <table>
-                <thead><tr><th>Shop ID</th><th>Shop Name</th><th>Route</th><th>Owner / Phone</th><th>Address</th><th>Credit Limit</th><th>Current Due</th><th>Actions</th></tr></thead>
-                <tbody id="adminShopsBody"></tbody>
+                <thead><tr><th>Shop Name</th><th>Route</th><th>Phone</th><th>Credit Limit</th><th>Current Due</th></tr></thead>
+                <tbody id="shopCreditReportBody"></tbody>
               </table>
             </div>
           </div>
         </div>
 
-        <!-- SUB-PANEL 7C: RECEIPT & THERMAL PRINTER EDITOR -->
-        <div id="adm-panel-receipt" class="adm-subpanel">
-          <div class="grid-2">
-            <div class="card">
-              <div class="card-header"><h3>🖨️ Bluetooth Thermal Receipt & Printer Settings</h3></div>
-              <form id="receiptSettingsForm">
-                <div class="form-group">
-                  <label>Company / Header Name *</label>
-                  <input type="text" id="cfgCompName" oninput="updateReceiptLivePreview()" required />
-                </div>
-                <div class="form-group">
-                  <label>Company Address *</label>
-                  <input type="text" id="cfgAddress" oninput="updateReceiptLivePreview()" required />
-                </div>
-                <div class="grid-2" style="gap:10px;">
-                  <div class="form-group">
-                    <label>Hotline / Phone Numbers *</label>
-                    <input type="text" id="cfgPhone" oninput="updateReceiptLivePreview()" required />
-                  </div>
-                  <div class="form-group">
-                    <label>Business Reg / VAT No</label>
-                    <input type="text" id="cfgRegNo" oninput="updateReceiptLivePreview()" />
-                  </div>
-                </div>
-                <div class="grid-2" style="gap:10px;">
-                  <div class="form-group">
-                    <label>Thermal Paper Width</label>
-                    <select id="cfgPaperWidth" onchange="updateReceiptLivePreview()">
-                      <option value="58mm">58mm (2-Inch Portable POS)</option>
-                      <option value="80mm">80mm (3-Inch Standard POS)</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label>Show Total Shop Due on Receipt?</label>
-                    <select id="cfgShowDue" onchange="updateReceiptLivePreview()">
-                      <option value="YES">YES - Print Total Shop Credit Balance</option>
-                      <option value="NO">NO - Print Current Bill Only</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label>Receipt Footer Message</label>
-                  <textarea id="cfgFooter" rows="2" oninput="updateReceiptLivePreview()"></textarea>
-                </div>
-                <button type="submit" class="btn-primary btn-block">✔ Save Receipt & Printer Configuration</button>
-              </form>
-            </div>
-
-            <div class="card" style="text-align:center;">
-              <div class="card-header"><h3>👁️ Live POS Thermal Receipt Preview</h3></div>
-              <div id="liveReceiptPreviewBox" class="thermal-preview w58"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SUB-PANEL 7D: USERS & PERMISSIONS -->
+        <!-- SUB-TAB 3: USERS & PERMISSIONS -->
         <div id="adm-panel-users" class="adm-subpanel">
           <div class="grid-2">
             <div class="card">
-              <div class="card-header"><h3>👤 Create Staff / Sales Rep Account</h3></div>
+              <div class="card-header"><h3>➕ Create System User / Sales Rep</h3></div>
               <form id="createUserForm">
-                <div class="form-group">
-                  <label>Username (Used for Login & Lorry Assignment) *</label>
-                  <input type="text" id="newUsrName" placeholder="e.g. kasun" required />
-                </div>
-                <div class="form-group">
-                  <label>Password *</label>
-                  <input type="password" id="newUsrPass" placeholder="Create strong password" required />
-                </div>
+                <div class="form-group"><label>Username *</label><input type="text" id="newUsrName" required /></div>
+                <div class="form-group"><label>Password *</label><input type="text" id="newUsrPass" required /></div>
                 <div class="form-group">
                   <label>Role *</label>
                   <select id="newUsrRole">
-                    <option value="SalesRep">SalesRep (Mobile Field App)</option>
-                    <option value="Staff">Warehouse Staff</option>
-                    <option value="Admin">System Administrator</option>
+                    <option value="SalesRep">SalesRep (Mobile Van POS)</option>
+                    <option value="Admin">Admin (Full Control)</option>
+                    <option value="Warehouse">Warehouse Staff</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label>Module Access Permissions (For Warehouse Staff)</label>
+                  <label>Module Permissions</label>
                   <div class="perm-grid">
-                    <label class="perm-item"><input type="checkbox" name="newPerm" value="DASHBOARD" checked /> Dashboard</label>
-                    <label class="perm-item"><input type="checkbox" name="newPerm" value="ITEMS" /> Items</label>
-                    <label class="perm-item"><input type="checkbox" name="newPerm" value="GRN" /> Stock In (GRN)</label>
-                    <label class="perm-item"><input type="checkbox" name="newPerm" value="LOADING" /> Loading</label>
-                    <label class="perm-item"><input type="checkbox" name="newPerm" value="UNLOADING" /> Unloading</label>
-                    <label class="perm-item"><input type="checkbox" name="newPerm" value="REPORTS" /> Reports</label>
+                    <label class="perm-item"><input type="checkbox" name="usrPerm" value="ALL" checked /> ALL (Admin)</label>
+                    <label class="perm-item"><input type="checkbox" name="usrPerm" value="DASHBOARD" /> Dashboard</label>
+                    <label class="perm-item"><input type="checkbox" name="usrPerm" value="GRN" /> Stock In (GRN)</label>
+                    <label class="perm-item"><input type="checkbox" name="usrPerm" value="LOADING" /> Vehicle Loading</label>
+                    <label class="perm-item"><input type="checkbox" name="usrPerm" value="UNLOADING" /> Unloading</label>
+                    <label class="perm-item"><input type="checkbox" name="usrPerm" value="REPORTS" /> Reports</label>
                   </div>
                 </div>
                 <button type="submit" class="btn-primary btn-block">✔ Create User Account</button>
@@ -962,26 +812,57 @@
             </div>
 
             <div class="card">
-              <div class="card-header"><h3>🔐 Active System Accounts</h3></div>
+              <div class="card-header"><h3>👥 Active System Users</h3></div>
               <div class="table-wrap">
                 <table>
-                  <thead><tr><th>ID</th><th>Username</th><th>Role</th><th>Permissions</th><th>Actions</th></tr></thead>
-                  <tbody id="usersTableBody"></tbody>
+                  <thead><tr><th>Username</th><th>Role</th><th>Permissions</th><th>Action</th></tr></thead>
+                  <tbody id="adminUsersBody"></tbody>
                 </table>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- SUB-TAB 4: POS THERMAL RECEIPT FORMAT -->
+        <div id="adm-panel-receipt" class="adm-subpanel">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-header"><h3>🖨️ Customize POS Thermal Receipt</h3></div>
+              <form id="receiptSettingsForm">
+                <div class="form-group"><label>Company Header Name</label><input type="text" id="rcpCompName" oninput="updateReceiptPreview()" /></div>
+                <div class="form-group"><label>Tagline / Sub-header</label><input type="text" id="rcpTagline" oninput="updateReceiptPreview()" /></div>
+                <div class="form-group"><label>Address</label><input type="text" id="rcpAddress" oninput="updateReceiptPreview()" /></div>
+                <div class="form-group"><label>Hotline / Phone</label><input type="text" id="rcpPhone" oninput="updateReceiptPreview()" /></div>
+                <div class="form-group">
+                  <label>Thermal Paper Width</label>
+                  <select id="rcpPaperWidth" onchange="updateReceiptPreview()">
+                    <option value="58mm">58mm (2-inch Portable Bluetooth)</option>
+                    <option value="80mm">80mm (3-inch Standard POS)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Show Shop Credit Balance on Receipt?</label>
+                  <select id="rcpShowCredit" onchange="updateReceiptPreview()">
+                    <option value="YES">YES - Print Total Due Balance</option>
+                    <option value="NO">NO - Hide Balance</option>
+                  </select>
+                </div>
+                <div class="form-group"><label>Footer Thank You Note</label><input type="text" id="rcpFooter" oninput="updateReceiptPreview()" /></div>
+                <button type="submit" class="btn-green btn-block">✔ Save Receipt Settings</button>
+              </form>
+            </div>
+
+            <div class="card" style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
+              <h4 style="color:var(--primary); margin-bottom:14px;">Live Thermal Receipt Preview</h4>
+              <div id="liveReceiptPreviewBox" class="thermal-preview w58"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <!-- SYSTEM FOOTER WATERMARK -->
-    <footer class="system-footer">
-      BITE PRO Enterprise ERP &bull; Engineered by <strong>ZOREX Zystem</strong>
-    </footer>
   </section>
 
-  <!-- MODAL: EDIT ITEM -->
+  <!-- EDIT ITEM MODAL -->
   <div id="editItemModal" class="modal-overlay">
     <div class="card" style="width:100%; max-width:420px;">
       <div class="card-header"><h3>✏️ Edit Product Item</h3></div>
@@ -991,61 +872,28 @@
         <div class="form-group"><label>Selling Price (Rs.)</label><input type="number" id="editItmPrice" step="0.01" required /></div>
         <div class="form-group"><label>Cost Price (Rs.)</label><input type="number" id="editItmCost" step="0.01" required /></div>
         <div class="form-group"><label>Reorder Level</label><input type="number" id="editItmReorder" required /></div>
-        <div style="display:flex; gap:10px;">
-          <button type="submit" class="btn-primary btn-block">Save Changes</button>
-          <button type="button" class="btn-danger" onclick="document.getElementById('editItemModal').style.display='none'">Cancel</button>
+        <div class="grid-2" style="gap:10px;">
+          <button type="submit" class="btn-green">Update Item</button>
+          <button type="button" class="btn-outline" onclick="document.getElementById('editItemModal').style.display='none'">Cancel</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- MODAL: EDIT USER -->
-  <div id="editUserModal" class="modal-overlay">
-    <div class="card" style="width:100%; max-width:440px;">
-      <div class="card-header"><h3>🔐 Edit User & Reset Password</h3></div>
-      <form id="editUserForm">
-        <input type="hidden" id="editUsrId" />
-        <div class="form-group"><label>Username</label><input type="text" id="editUsrNameDisplay" disabled /></div>
-        <div class="form-group">
-          <label>Role</label>
-          <select id="editUsrRole">
-            <option value="SalesRep">SalesRep</option>
-            <option value="Staff">Staff</option>
-            <option value="Admin">Admin</option>
-          </select>
-        </div>
-        <div class="form-group"><label>New Password (Leave blank to keep current)</label><input type="password" id="editUsrPass" placeholder="Enter new password" /></div>
-        <div class="form-group">
-          <label>Permissions</label>
-          <div class="perm-grid">
-            <label class="perm-item"><input type="checkbox" name="editPerm" value="DASHBOARD" /> Dashboard</label>
-            <label class="perm-item"><input type="checkbox" name="editPerm" value="ITEMS" /> Items</label>
-            <label class="perm-item"><input type="checkbox" name="editPerm" value="GRN" /> GRN</label>
-            <label class="perm-item"><input type="checkbox" name="editPerm" value="LOADING" /> Loading</label>
-            <label class="perm-item"><input type="checkbox" name="editPerm" value="UNLOADING" /> Unloading</label>
-            <label class="perm-item"><input type="checkbox" name="editPerm" value="REPORTS" /> Reports</label>
-            <label class="perm-item"><input type="checkbox" name="editPerm" value="ADMIN" /> Admin</label>
-          </div>
-        </div>
-        <div style="display:flex; gap:10px;">
-          <button type="submit" class="btn-primary btn-block">Update Account</button>
-          <button type="button" class="btn-danger" onclick="document.getElementById('editUserModal').style.display='none'">Cancel</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- MODAL: PRINT DISPATCH / GRN VOUCHER -->
+  <!-- PRINT VOUCHER MODAL -->
   <div id="voucherModal" class="modal-overlay">
-    <div class="card" style="width:100%; max-width:560px; background:#fff; color:#000;">
+    <div class="card" style="width:100%; max-width:680px; background:#fff; color:#000;">
       <div id="voucherPrintArea"></div>
-      <div class="no-print" style="margin-top:16px; display:flex; gap:10px;">
-        <button class="btn-primary btn-block" onclick="window.print()">🖨️ Print Voucher</button>
+      <div class="no-print" style="margin-top:16px; display:flex; gap:10px; justify-content:flex-end;">
+        <button class="btn-primary" onclick="window.print()">🖨️ Print Voucher</button>
         <button class="btn-danger" onclick="document.getElementById('voucherModal').style.display='none'">Close</button>
       </div>
     </div>
   </div>
 
+  <footer class="system-footer">
+    Engineered & Powered by <strong>ZOREX Zystem</strong> • Enterprise Warehouse & Fleet ERP
+  </footer>
   <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbzQokOP57RQChfc8o5mXc9vLDS6w1gV1PwFfkNK44HEwZtTu1inqLdX-hgV3eAvnpy8Wg/exec";
     const API_SECRET = "BITE_SEC_2026_9988";
@@ -1179,6 +1027,7 @@
       btn.classList.add("active");
 
       if (tabId === "dashboard") renderDashboardCharts();
+      if (tabId === "loading") loadFleetControlData();
       if (tabId === "reports") fetchReports();
       if (tabId === "admin") {
         loadFleetControlData();
@@ -1209,8 +1058,7 @@
       renderItemsCatalog();
       populateItemDropdowns();
 
-      const role = localStorage.getItem("bite_role");
-      if (role === "Admin") loadFleetControlData();
+      loadFleetControlData();
     }
 
     /* =========================================================
@@ -1223,7 +1071,6 @@
       const textColor = isLight ? "#334155" : "#cbd5e1";
       const gridColor = isLight ? "rgba(15, 23, 42, 0.08)" : "rgba(255, 255, 255, 0.08)";
 
-      /* 1. BAR CHART: ITEM-WISE WAREHOUSE STOCK */
       const barCanvas = document.getElementById("stockBarChart");
       if (barCanvas) {
         if (stockBarChartInstance) stockBarChartInstance.destroy();
@@ -1248,9 +1095,7 @@
           options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: {
-              legend: { labels: { color: textColor } }
-            },
+            plugins: { legend: { labels: { color: textColor } } },
             scales: {
               x: { ticks: { color: textColor }, grid: { color: gridColor } },
               y: { beginAtZero: true, ticks: { color: textColor }, grid: { color: gridColor } }
@@ -1259,7 +1104,6 @@
         });
       }
 
-      /* 2. PIE (DOUGHNUT) CHART: TODAY'S SALES & STOCK FLOW */
       const pieCanvas = document.getElementById("salesPieChart");
       if (pieCanvas) {
         if (salesPieChartInstance) salesPieChartInstance.destroy();
@@ -1283,10 +1127,7 @@
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-              legend: {
-                position: "bottom",
-                labels: { color: textColor, padding: 14 }
-              }
+              legend: { position: "bottom", labels: { color: textColor, padding: 14 } }
             }
           }
         });
@@ -1624,25 +1465,73 @@
        ADMINISTRATION: FLEET, ATTENDANCE, REP REPORTS & RECEIPT
        ========================================================= */
     async function loadFleetControlData() {
-      const res = await callApi({ action: "getFleetControlData" });
-      if (!res || res.status !== "success") return;
-      fleetData = res;
+      let repsList = [];
 
+      /* 1. Fetch directly from getUsers first so ALL created reps load reliably */
+      const uRes = await callApi({ action: "getUsers" });
+      if (uRes && uRes.status === "success" && Array.isArray(uRes.users)) {
+        uRes.users.forEach(function(u) {
+          const uname = String(u.username || "").trim();
+          const urole = String(u.role || "").trim().toLowerCase();
+          if (uname && urole !== "admin" && repsList.indexOf(uname) === -1) {
+            repsList.push(uname);
+          }
+        });
+        /* If no non-admin users found, include all users so dropdown is never empty */
+        if (repsList.length === 0) {
+          uRes.users.forEach(function(u) {
+            const uname = String(u.username || "").trim();
+            if (uname && repsList.indexOf(uname) === -1) {
+              repsList.push(uname);
+            }
+          });
+        }
+      }
+
+      /* 2. Fetch fleet data and merge any additional reps */
+      const res = await callApi({ action: "getFleetControlData" });
+      if (res && res.status === "success") {
+        fleetData = res;
+        if (Array.isArray(res.reps)) {
+          res.reps.forEach(function(r) {
+            const rname = String(r || "").trim();
+            if (rname && repsList.indexOf(rname) === -1) {
+              repsList.push(rname);
+            }
+          });
+        }
+        fleetData.reps = repsList;
+      }
+
+      /* 3. Populate Vehicle Loading & Route Sales Rep Dropdowns */
       const repDropdowns = ["loadRepSelect", "rtAssignedRep"];
       repDropdowns.forEach(function(id) {
         const el = document.getElementById(id);
         if (!el) return;
-        el.innerHTML = (id === "rtAssignedRep") ? '<option value="ALL">All Sales Reps</option>' : "";
-        res.reps.forEach(function(r) { el.innerHTML += `<option value="${r}">${r}</option>`; });
+        const prevVal = el.value;
+        el.innerHTML = (id === "rtAssignedRep")
+          ? '<option value="ALL">All Sales Reps</option>'
+          : '<option value="">-- Select Sales Rep --</option>';
+        repsList.forEach(function(r) {
+          const opt = document.createElement("option");
+          opt.value = r;
+          opt.textContent = r;
+          el.appendChild(opt);
+        });
+        if (prevVal && repsList.indexOf(prevVal) !== -1) el.value = prevVal;
       });
 
+      if (!res || res.status !== "success") return;
+
       const invFilterSel = document.getElementById("filterInvoicesByRep");
-      const prevFilter = invFilterSel.value;
-      invFilterSel.innerHTML = '<option value="ALL">All Sales Reps</option>';
-      res.reps.forEach(function(r) {
-        invFilterSel.innerHTML += `<option value="${r}">${r}</option>`;
-      });
-      if (prevFilter) invFilterSel.value = prevFilter;
+      if (invFilterSel) {
+        const prevFilter = invFilterSel.value;
+        invFilterSel.innerHTML = '<option value="ALL">All Sales Reps</option>';
+        repsList.forEach(function(r) {
+          invFilterSel.innerHTML += `<option value="${r}">${r}</option>`;
+        });
+        if (prevFilter) invFilterSel.value = prevFilter;
+      }
 
       document.getElementById("admRepTotalSales").innerText = "Rs. " + res.invoice_summary.total_sales.toLocaleString(undefined, { minimumFractionDigits: 2 });
       document.getElementById("admRepTotalCash").innerText = "Rs. " + res.invoice_summary.total_cash.toLocaleString(undefined, { minimumFractionDigits: 2 });
@@ -1686,14 +1575,15 @@
     function renderRepPerformanceReport() {
       if (!fleetData) return;
       const tbody = document.getElementById("repPerformanceReportBody");
+      if (!tbody) return;
       tbody.innerHTML = "";
 
       const repStats = {};
-      fleetData.reps.forEach(function(r) {
+      (fleetData.reps || []).forEach(function(r) {
         repStats[r] = { rep: r, bill_count: 0, gross_sales: 0, cash_sales: 0, credit_issued: 0, credit_collected: 0, total_cash_hand: 0 };
       });
 
-      fleetData.today_invoices.forEach(function(inv) {
+      (fleetData.today_invoices || []).forEach(function(inv) {
         const r = inv.rep;
         if (!repStats[r]) {
           repStats[r] = { rep: r, bill_count: 0, gross_sales: 0, cash_sales: 0, credit_issued: 0, credit_collected: 0, total_cash_hand: 0 };
@@ -1733,243 +1623,180 @@
         const cols = Array.from(tr.querySelectorAll("td")).map(function(td) { return '"' + td.innerText.replace("Rs. ", "") + '"'; });
         csv += cols.join(",") + "\n";
       });
-      downloadCsvFile(csv, "Rep_Sales_Collection_Report_" + fleetData.date + ".csv");
+      downloadCsvFile(csv, "Rep_Performance_" + new Date().toISOString().slice(0,10) + ".csv");
     }
 
     function renderAdminInvoicesTable() {
       if (!fleetData) return;
+      const tbody = document.getElementById("adminInvoicesBody");
+      if (!tbody) return;
       const filterRep = document.getElementById("filterInvoicesByRep").value;
-      const tbody = document.getElementById("adminLiveInvoicesBody");
       tbody.innerHTML = "";
 
-      const list = fleetData.today_invoices.filter(function(inv) {
+      (fleetData.today_invoices || []).slice().reverse().filter(function(inv) {
         return filterRep === "ALL" || inv.rep === filterRep;
-      });
-
-      if (list.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; color:var(--text-muted);">No invoices recorded today for selected filter.</td></tr>`;
-        return;
-      }
-
-      list.slice().reverse().forEach(function(inv) {
-        const modeBadge = inv.payment_type === "CASH" ? "badge-green" : (inv.payment_type === "CREDIT_PAYMENT" ? "badge-blue" : "badge-amber");
+      }).forEach(function(inv) {
         tbody.innerHTML += `
           <tr>
-            <td><strong>${inv.invoice_id}</strong></td>
+            <td>${inv.invoice_id}</td>
             <td>${inv.time}</td>
-            <td>${inv.rep}</td>
-            <td>${inv.vehicle}</td>
+            <td><strong>${inv.rep}</strong></td>
+            <td>${inv.vehicle || "-"}</td>
             <td>${inv.shop_name}</td>
-            <td><span class="badge ${modeBadge}">${inv.payment_type}</span></td>
-            <td>Rs. ${inv.total_amount.toFixed(2)}</td>
-            <td style="color:var(--green);">Rs. ${inv.cash_paid.toFixed(2)}</td>
-            <td style="color:var(--red);">Rs. ${inv.credit_balance.toFixed(2)}</td>
+            <td><span class="badge badge-blue">${inv.payment_type}</span></td>
+            <td>Rs. ${Number(inv.total_amount).toFixed(2)}</td>
+            <td style="color:var(--green);">Rs. ${Number(inv.cash_paid).toFixed(2)}</td>
+            <td style="color:var(--red);">Rs. ${Number(inv.credit_balance).toFixed(2)}</td>
           </tr>`;
       });
     }
 
-    function exportInvoicesCsv() {
+    function renderAdminRoutesAndShops() {
       if (!fleetData) return;
-      let csv = "Invoice ID,Date,Time,Rep,Vehicle,Shop Name,Payment Mode,Total Amount,Cash Paid,Credit Balance\n";
-      fleetData.today_invoices.forEach(function(inv) {
-        csv += `"${inv.invoice_id}","${inv.date}","${inv.time}","${inv.rep}","${inv.vehicle}","${inv.shop_name}","${inv.payment_type}",${inv.total_amount},${inv.cash_paid},${inv.credit_balance}\n`;
+      const rtBody = document.getElementById("adminRoutesBody");
+      const shpRtSel = document.getElementById("shpRouteId");
+      if (rtBody) rtBody.innerHTML = "";
+      if (shpRtSel) shpRtSel.innerHTML = "";
+
+      (fleetData.routes || []).forEach(function(r) {
+        if (rtBody) {
+          rtBody.innerHTML += `<tr><td>${r.route_id}</td><td><strong>${r.route_name}</strong></td><td>${r.assigned_rep}</td><td><button class="btn-danger btn-sm" onclick="deleteRoute('${r.route_id}')">Del</button></td></tr>`;
+        }
+        if (shpRtSel) {
+          shpRtSel.innerHTML += `<option value="${r.route_id}">${r.route_name}</option>`;
+        }
       });
-      downloadCsvFile(csv, "Field_Invoices_" + fleetData.date + ".csv");
+
+      const shpBody = document.getElementById("adminShopsBody");
+      if (shpBody) {
+        shpBody.innerHTML = "";
+        (fleetData.shops || []).forEach(function(s) {
+          shpBody.innerHTML += `<tr><td><strong>${s.shop_name}</strong></td><td>${s.route_id}</td><td style="color:var(--red);">Rs. ${Number(s.current_credit).toFixed(2)}</td><td>Rs. ${Number(s.credit_limit).toFixed(2)}</td><td><button class="btn-danger btn-sm" onclick="deleteShop('${s.shop_id}')">Del</button></td></tr>`;
+        });
+      }
     }
 
     function renderShopCreditReport() {
       if (!fleetData) return;
       const tbody = document.getElementById("shopCreditReportBody");
+      if (!tbody) return;
       tbody.innerHTML = "";
-
-      const routeMap = {};
-      fleetData.routes.forEach(function(r) { routeMap[r.route_id] = r.route_name; });
-
-      const sortedShops = fleetData.shops.slice().sort(function(a, b) { return b.current_credit - a.current_credit; });
-      sortedShops.forEach(function(s) {
-        const pct = s.credit_limit > 0 ? Math.round((s.current_credit / s.credit_limit) * 100) : 0;
-        const badge = pct >= 90 ? "badge-red" : (pct >= 50 ? "badge-amber" : "badge-green");
-        tbody.innerHTML += `
-          <tr>
-            <td>${s.shop_id}</td>
-            <td><strong>${s.shop_name}</strong></td>
-            <td>${routeMap[s.route_id] || s.route_id}</td>
-            <td>${s.phone}</td>
-            <td>Rs. ${s.credit_limit.toFixed(2)}</td>
-            <td><strong style="color:${s.current_credit > 0 ? 'var(--red)' : 'var(--green)'};">Rs. ${s.current_credit.toFixed(2)}</strong></td>
-            <td><span class="badge ${badge}">${pct}% Used</span></td>
-          </tr>`;
+      (fleetData.shops || []).filter(function(s) { return Number(s.current_credit) > 0; }).forEach(function(s) {
+        tbody.innerHTML += `<tr><td><strong>${s.shop_name}</strong></td><td>${s.route_id}</td><td>${s.phone}</td><td>Rs. ${Number(s.credit_limit).toFixed(2)}</td><td style="color:var(--red); font-weight:700;">Rs. ${Number(s.current_credit).toFixed(2)}</td></tr>`;
       });
     }
 
-    function exportShopCreditCsv() {
-      if (!fleetData) return;
-      let csv = "Shop ID,Shop Name,Route ID,Owner,Phone,Address,Credit Limit,Current Credit Due\n";
-      fleetData.shops.forEach(function(s) {
-        csv += `"${s.shop_id}","${s.shop_name}","${s.route_id}","${s.owner_name}","${s.phone}","${s.address}",${s.credit_limit},${s.current_credit}\n`;
-      });
-      downloadCsvFile(csv, "Shop_Credit_Balances_" + fleetData.date + ".csv");
-    }
-
-    function renderAdminRoutesAndShops() {
-      if (!fleetData) return;
-      const rBody = document.getElementById("adminRoutesBody");
-      const shpRouteSel = document.getElementById("shpRouteId");
-      rBody.innerHTML = "";
-      shpRouteSel.innerHTML = "";
-
-      fleetData.routes.forEach(function(r) {
-        shpRouteSel.innerHTML += `<option value="${r.route_id}">${r.route_name}</option>`;
-        rBody.innerHTML += `
-          <tr>
-            <td>${r.route_id}</td>
-            <td><strong>${r.route_name}</strong></td>
-            <td><span class="badge badge-blue">${r.assigned_rep}</span></td>
-            <td>
-              <button class="btn-outline btn-sm" onclick='editRoute(${JSON.stringify(r)})'>Edit</button>
-              <button class="btn-danger btn-sm" onclick="deleteRoute('${r.route_id}')">Del</button>
-            </td>
-          </tr>`;
-      });
-
-      renderAdminShopsTable();
-    }
-
-    function renderAdminShopsTable() {
-      if (!fleetData) return;
-      const q = document.getElementById("admShopSearch").value.toLowerCase();
-      const tbody = document.getElementById("adminShopsBody");
-      tbody.innerHTML = "";
-
-      const routeMap = {};
-      fleetData.routes.forEach(function(r) { routeMap[r.route_id] = r.route_name; });
-
-      fleetData.shops.filter(function(s) {
-        return s.shop_name.toLowerCase().indexOf(q) !== -1 || s.address.toLowerCase().indexOf(q) !== -1;
-      }).forEach(function(s) {
-        tbody.innerHTML += `
-          <tr>
-            <td>${s.shop_id}</td>
-            <td><strong>${s.shop_name}</strong></td>
-            <td>${routeMap[s.route_id] || s.route_id}</td>
-            <td>${s.owner_name} (${s.phone})</td>
-            <td>${s.address}</td>
-            <td>Rs. ${s.credit_limit.toFixed(2)}</td>
-            <td style="color:${s.current_credit > 0 ? 'var(--red)' : 'var(--green)'}; font-weight:700;">Rs. ${s.current_credit.toFixed(2)}</td>
-            <td>
-              <button class="btn-outline btn-sm" onclick='editShop(${JSON.stringify(s)})'>Edit</button>
-              <button class="btn-danger btn-sm" onclick="deleteShop('${s.shop_id}')">Del</button>
-            </td>
-          </tr>`;
-      });
-    }
-
-    document.getElementById("saveRouteForm").addEventListener("submit", async function(e) {
+    document.getElementById("routeForm").addEventListener("submit", async function(e) {
       e.preventDefault();
       const res = await callApi({
         action: "saveRoute",
-        route_id: document.getElementById("editRouteId").value,
         route_name: document.getElementById("rtName").value.trim(),
         assigned_rep: document.getElementById("rtAssignedRep").value
       });
-      if (res && res.status === "success") { showToast(res.message); resetRouteForm(); loadFleetControlData(); }
+      if (res && res.status === "success") { showToast(res.message); e.target.reset(); loadFleetControlData(); }
       else if (res) showToast(res.message, true);
     });
 
-    function editRoute(r) {
-      document.getElementById("editRouteId").value = r.route_id;
-      document.getElementById("rtName").value = r.route_name;
-      document.getElementById("rtAssignedRep").value = r.assigned_rep;
-    }
-    function resetRouteForm() { document.getElementById("editRouteId").value = ""; document.getElementById("saveRouteForm").reset(); }
-
     async function deleteRoute(id) {
-      if (!confirm("Delete this route?")) return;
+      if (!confirm("Delete route?")) return;
       const res = await callApi({ action: "deleteRoute", route_id: id });
       if (res && res.status === "success") { showToast(res.message); loadFleetControlData(); }
     }
 
-    document.getElementById("saveShopForm").addEventListener("submit", async function(e) {
+    document.getElementById("shopForm").addEventListener("submit", async function(e) {
       e.preventDefault();
       const res = await callApi({
         action: "saveShop",
-        shop_id: document.getElementById("editShopId").value,
-        shop_name: document.getElementById("shpName").value.trim(),
         route_id: document.getElementById("shpRouteId").value,
+        shop_name: document.getElementById("shpName").value.trim(),
         owner_name: document.getElementById("shpOwner").value.trim(),
         phone: document.getElementById("shpPhone").value.trim(),
         address: document.getElementById("shpAddress").value.trim(),
         credit_limit: document.getElementById("shpLimit").value
       });
-      if (res && res.status === "success") { showToast(res.message); resetShopForm(); loadFleetControlData(); }
+      if (res && res.status === "success") { showToast(res.message); e.target.reset(); loadFleetControlData(); }
       else if (res) showToast(res.message, true);
     });
 
-    function editShop(s) {
-      document.getElementById("editShopId").value = s.shop_id;
-      document.getElementById("shpName").value = s.shop_name;
-      document.getElementById("shpRouteId").value = s.route_id;
-      document.getElementById("shpOwner").value = s.owner_name;
-      document.getElementById("shpPhone").value = s.phone;
-      document.getElementById("shpAddress").value = s.address;
-      document.getElementById("shpLimit").value = s.credit_limit;
-    }
-    function resetShopForm() { document.getElementById("editShopId").value = ""; document.getElementById("saveShopForm").reset(); }
-
     async function deleteShop(id) {
-      if (!confirm("Remove this shop?")) return;
+      if (!confirm("Remove shop?")) return;
       const res = await callApi({ action: "deleteShop", shop_id: id });
       if (res && res.status === "success") { showToast(res.message); loadFleetControlData(); }
     }
 
-    function populateReceiptEditor(cfg) {
-      if (!cfg) return;
-      document.getElementById("cfgCompName").value = cfg.company_name || "";
-      document.getElementById("cfgAddress").value = cfg.address || "";
-      document.getElementById("cfgPhone").value = cfg.phone || "";
-      document.getElementById("cfgRegNo").value = cfg.reg_no || "";
-      document.getElementById("cfgPaperWidth").value = cfg.paper_width || "58mm";
-      document.getElementById("cfgShowDue").value = cfg.show_credit_balance || "YES";
-      document.getElementById("cfgFooter").value = cfg.footer_note || "";
-      updateReceiptLivePreview();
+    /* USERS & PERMISSIONS */
+    async function loadUsersList() {
+      const res = await callApi({ action: "getUsers" });
+      if (!res || res.status !== "success") return;
+      const tbody = document.getElementById("adminUsersBody");
+      if (!tbody) return;
+      tbody.innerHTML = "";
+      res.users.forEach(function(u) {
+        tbody.innerHTML += `<tr><td><strong>${u.username}</strong></td><td><span class="badge badge-blue">${u.role}</span></td><td>${u.permissions}</td><td><button class="btn-danger btn-sm" onclick="deleteUser('${u.user_id}')">Del</button></td></tr>`;
+      });
     }
 
-    function updateReceiptLivePreview() {
+    document.getElementById("createUserForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const checked = Array.from(document.querySelectorAll('input[name="usrPerm"]:checked')).map(function(c) { return c.value; });
+      const res = await callApi({
+        action: "createUser",
+        new_username: document.getElementById("newUsrName").value.trim(),
+        new_password: document.getElementById("newUsrPass").value.trim(),
+        new_role: document.getElementById("newUsrRole").value,
+        new_permissions: checked.join(",") || "REP"
+      });
+      if (res && res.status === "success") {
+        showToast(res.message);
+        e.target.reset();
+        loadUsersList();
+        loadFleetControlData();
+      } else if (res) showToast(res.message, true);
+    });
+
+    async function deleteUser(id) {
+      if (!confirm("Delete this user?")) return;
+      const res = await callApi({ action: "deleteUser", user_id: id });
+      if (res && res.status === "success") { showToast(res.message); loadUsersList(); loadFleetControlData(); }
+    }
+
+    /* RECEIPT SETTINGS */
+    function populateReceiptEditor(cfg) {
+      if (!cfg) return;
+      document.getElementById("rcpCompName").value = cfg.company_name || "";
+      document.getElementById("rcpTagline").value = cfg.tagline || "";
+      document.getElementById("rcpAddress").value = cfg.address || "";
+      document.getElementById("rcpPhone").value = cfg.phone || "";
+      document.getElementById("rcpPaperWidth").value = cfg.paper_width || "58mm";
+      document.getElementById("rcpShowCredit").value = cfg.show_credit_balance || "YES";
+      document.getElementById("rcpFooter").value = cfg.footer_note || "";
+      updateReceiptPreview();
+    }
+
+    function updateReceiptPreview() {
       const box = document.getElementById("liveReceiptPreviewBox");
-      const w = document.getElementById("cfgPaperWidth").value;
+      if (!box) return;
+      const w = document.getElementById("rcpPaperWidth").value;
       box.className = "thermal-preview " + (w === "80mm" ? "w80" : "w58");
-
-      const comp = document.getElementById("cfgCompName").value || "BITE PRO COMPANY";
-      const addr = document.getElementById("cfgAddress").value || "Colombo";
-      const phn = document.getElementById("cfgPhone").value || "077-1234567";
-      const reg = document.getElementById("cfgRegNo").value;
-      const due = document.getElementById("cfgShowDue").value;
-      const ftr = document.getElementById("cfgFooter").value || "Thank you!";
-
+      const showCr = document.getElementById("rcpShowCredit").value === "YES";
       box.innerHTML = `
         <div style="text-align:center;">
-          <strong style="font-size:14px;">${comp}</strong><br>
-          <span>${addr}</span><br>
-          <span>Tel: ${phn}</span><br>
-          ${reg ? `<span>Reg: ${reg}</span><br>` : ""}
+          <strong>${document.getElementById("rcpCompName").value || "BITE PRO"}</strong><br/>
+          <span>${document.getElementById("rcpTagline").value || ""}</span><br/>
+          <span>${document.getElementById("rcpAddress").value || ""}</span><br/>
+          <span>Tel: ${document.getElementById("rcpPhone").value || ""}</span>
         </div>
-        <div style="border-top:1px dashed #000; margin:6px 0;"></div>
-        <div style="text-align:left;">
-          Ref: INV-102458<br>
-          Date: 2026-11-15 10:30:12<br>
-          Rep: kasun (WP-LN-4582)<br>
-          Shop: <strong>Silva Super Stores</strong>
-        </div>
-        <div style="border-top:1px dashed #000; margin:6px 0;"></div>
-        <div style="display:flex; justify-content:space-between;"><strong>ITEM</strong><strong>AMT</strong></div>
-        <div style="display:flex; justify-content:space-between;"><span>Spicy Bite 100g (10x120)</span><span>1200.00</span></div>
-        <div style="border-top:1px dashed #000; margin:6px 0;"></div>
-        <div style="display:flex; justify-content:space-between;"><strong>GROSS TOTAL:</strong><strong>1200.00</strong></div>
-        <div style="display:flex; justify-content:space-between;"><span>CASH PAID:</span><span>1000.00</span></div>
-        <div style="display:flex; justify-content:space-between;"><span>BILL CREDIT:</span><span>200.00</span></div>
-        ${due === "YES" ? `<div style="display:flex; justify-content:space-between; border-top:1px dotted #000; margin-top:4px; padding-top:4px;"><strong>TOTAL SHOP DUE:</strong><strong>4500.00</strong></div>` : ""}
-        <div style="border-top:1px dashed #000; margin:6px 0;"></div>
-        <div style="text-align:center; font-size:11px;">${ftr}</div>
+        <hr style="border-top:1px dashed #000; margin:6px 0;"/>
+        <div>Inv: INV-10245 | Rep: kasun</div>
+        <div>Shop: Perera Stores</div>
+        <hr style="border-top:1px dashed #000; margin:6px 0;"/>
+        <div>Spicy Mixture x10   1,500.00</div>
+        <div>[FREE] Mixture x1        0.00</div>
+        <hr style="border-top:1px dashed #000; margin:6px 0;"/>
+        <div style="text-align:right;"><strong>NET TOTAL: Rs. 1,500.00</strong></div>
+        ${showCr ? '<div style="text-align:right;">Shop Total Due: Rs. 2,500.00</div>' : ''}
+        <hr style="border-top:1px dashed #000; margin:6px 0;"/>
+        <div style="text-align:center;">${document.getElementById("rcpFooter").value || "Thank You!"}</div>
       `;
     }
 
@@ -1978,98 +1805,24 @@
       const res = await callApi({
         action: "saveReceiptSettings",
         settings: {
-          company_name: document.getElementById("cfgCompName").value.trim(),
-          address: document.getElementById("cfgAddress").value.trim(),
-          phone: document.getElementById("cfgPhone").value.trim(),
-          reg_no: document.getElementById("cfgRegNo").value.trim(),
-          paper_width: document.getElementById("cfgPaperWidth").value,
-          show_credit_balance: document.getElementById("cfgShowDue").value,
-          footer_note: document.getElementById("cfgFooter").value.trim()
+          company_name: document.getElementById("rcpCompName").value,
+          tagline: document.getElementById("rcpTagline").value,
+          address: document.getElementById("rcpAddress").value,
+          phone: document.getElementById("rcpPhone").value,
+          paper_width: document.getElementById("rcpPaperWidth").value,
+          show_credit_balance: document.getElementById("rcpShowCredit").value,
+          footer_note: document.getElementById("rcpFooter").value
         }
       });
       if (res && res.status === "success") showToast(res.message);
-      else if (res) showToast(res.message, true);
     });
 
-    async function loadUsersList() {
-      const res = await callApi({ action: "getUsers" });
-      if (!res || res.status !== "success") return;
-      const tbody = document.getElementById("usersTableBody");
-      tbody.innerHTML = "";
-      res.users.forEach(function(u) {
-        tbody.innerHTML += `
-          <tr>
-            <td>${u.user_id}</td>
-            <td><strong>${u.username}</strong></td>
-            <td><span class="badge badge-blue">${u.role}</span></td>
-            <td style="font-size:0.78rem; color:var(--text-muted);">${u.permissions}</td>
-            <td>
-              <button class="btn-outline btn-sm" onclick='openEditUser(${JSON.stringify(u)})'>Edit</button>
-              <button class="btn-danger btn-sm" onclick="deleteUser('${u.user_id}')">Del</button>
-            </td>
-          </tr>`;
-      });
-    }
-
-    document.getElementById("createUserForm").addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const perms = Array.from(document.querySelectorAll("input[name='newPerm']:checked")).map(function(c) { return c.value; }).join(",");
-      const res = await callApi({
-        action: "createUser",
-        new_username: document.getElementById("newUsrName").value.trim(),
-        new_password: document.getElementById("newUsrPass").value,
-        new_role: document.getElementById("newUsrRole").value,
-        new_permissions: perms
-      });
-      if (res && res.status === "success") { showToast(res.message); e.target.reset(); loadUsersList(); loadFleetControlData(); }
-      else if (res) showToast(res.message, true);
-    });
-
-    function openEditUser(u) {
-      document.getElementById("editUsrId").value = u.user_id;
-      document.getElementById("editUsrNameDisplay").value = u.username;
-      document.getElementById("editUsrRole").value = u.role;
-      document.getElementById("editUsrPass").value = "";
-      const list = (u.permissions || "").split(",");
-      document.querySelectorAll("input[name='editPerm']").forEach(function(cb) {
-        cb.checked = (list.indexOf(cb.value) !== -1 || list.indexOf("ALL") !== -1);
-      });
-      document.getElementById("editUserModal").style.display = "flex";
-    }
-
-    document.getElementById("editUserForm").addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const perms = Array.from(document.querySelectorAll("input[name='editPerm']:checked")).map(function(c) { return c.value; }).join(",");
-      const res = await callApi({
-        action: "updateUser",
-        user_id: document.getElementById("editUsrId").value,
-        new_role: document.getElementById("editUsrRole").value,
-        new_password: document.getElementById("editUsrPass").value,
-        new_permissions: perms
-      });
-      if (res && res.status === "success") {
-        showToast(res.message);
-        document.getElementById("editUserModal").style.display = "none";
-        loadUsersList();
-      } else if (res) showToast(res.message, true);
-    });
-
-    async function deleteUser(id) {
-      if (!confirm("Delete this user account?")) return;
-      const res = await callApi({ action: "deleteUser", user_id: id });
-      if (res && res.status === "success") { showToast(res.message); loadUsersList(); }
-      else if (res) showToast(res.message, true);
-    }
-
-    function downloadCsvFile(csvContent, filename) {
-      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+    function downloadCsvFile(csvText, filename) {
+      const blob = new Blob([csvText], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
     }
 
     function showToast(msg, isError) {
